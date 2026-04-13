@@ -83,7 +83,7 @@ export default function Home({ selectedTab, setSelectedTab, navigate }) {
     <div className="app-shell">
       {/* Hero */}
       <div className="home-hero">
-        <div className="hero-badge">Understand Quran Academy</div>
+        <div className="hero-badge">Let's Learn Quran</div>
         <div className="hero-arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
         <div className="hero-title">Quran Learning App</div>
         <div className="hero-sub">Arabic Grammar & Tajweed — The Easy Way</div>
