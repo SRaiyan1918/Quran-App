@@ -36,115 +36,41 @@ export const grammarLessons = [
       { arabic: "نَحْنُ مُسْلِمُونَ", english: "We are Muslims." },
     ],
 exercises: [
-  // EASY - Basic meanings (5 questions)
-  {
-    type: "mcq",
-    question: "What does هُوَ mean in English?",
-    options: ["She", "He", "They", "We"],
-    answer: "He"
-  },
-  {
-    type: "mcq",
-    question: "What is the meaning of نَحْنُ?",
-    options: ["You", "They", "We", "I"],
-    answer: "We"
-  },
-  {
-    type: "mcq",
-    question: "Which pronoun means 'You' (singular)?",
-    options: ["هُمْ", "نَحْنُ", "أنتَ", "هُوَ"],
-    answer: "أنتَ"
-  },
-  {
-    type: "mcq",
-    question: "What does أَنَا mean?",
-    options: ["He", "She", "I", "You"],
-    answer: "I"
-  },
-  {
-    type: "mcq",
-    question: "Which pronoun means 'They'?",
-    options: ["هُمْ", "هُوَ", "نَحْنُ", "أنتُمْ"],
-    answer: "هُمْ"
-  },
+  // EASY
+  { type: "mcq", question: "What does هُوَ mean in English?", options: ["She", "He", "They", "We"], answer: "He" },
+  { type: "mcq", question: "What is the meaning of نَحْنُ?", options: ["You", "They", "We", "I"], answer: "We" },
+  { type: "mcq", question: "Which pronoun means 'You' (singular)?", options: ["هُمْ", "نَحْنُ", "أنتَ", "هُوَ"], answer: "أنتَ" },
+  { type: "mcq", question: "What does أَنَا mean?", options: ["He", "She", "I", "You"], answer: "I" },
+  { type: "mcq", question: "Which pronoun means 'They'?", options: ["هُمْ", "هُوَ", "نَحْنُ", "أنتُمْ"], answer: "هُمْ" },
 
-  // MEDIUM - Matching (5 questions)
-  {
-    type: "match",
-    question: "Match the Arabic pronouns with their English meanings",
-    pairs: [
+  // MEDIUM - Matching
+  { type: "match", question: "Match the Arabic pronouns with their English meanings", pairs: [
       { arabic: "هُوَ", english: "He" },
       { arabic: "هُمْ", english: "They" },
       { arabic: "أنتَ", english: "You (masculine)" },
       { arabic: "أنا", english: "I" },
       { arabic: "أنتُمْ", english: "You all" },
       { arabic: "نَحْنُ", english: "We" }
-    ]
-  },
-  {
-    type: "match",
-    question: "Match the combined forms with their meanings",
-    pairs: [
+  ]},
+  { type: "match", question: "Match the combined forms with their meanings", pairs: [
       { arabic: "وَهُوَ", english: "and he" },
       { arabic: "فَهُمْ", english: "so they" },
       { arabic: "فَهُوَ", english: "so he" },
       { arabic: "وَهُمْ", english: "and they" }
-    ]
-  },
+  ]},
 
-  // MEDIUM-HARD - Fill in blanks (5 questions)
-  {
-    type: "fill",
-    question: "وَ + هُمْ = ?",
-    options: ["وَهُمْ", "فَهُمْ", "وَهُوَ", "فَنَحْنُ"],
-    answer: "وَهُمْ"
-  },
-  {
-    type: "fill",
-    question: "فَ + هُوَ = ?",
-    options: ["وَهُوَ", "فَهُوَ", "فَهُمْ", "فَنَحْنُ"],
-    answer: "فَهُوَ"
-  },
-  {
-    type: "fill",
-    question: "Complete the sentence: ______ مُسْلِمٌ (He is a Muslim)",
-    options: ["هُوَ", "هُمْ", "أنا", "نَحْنُ"],
-    answer: "هُوَ"
-  },
-  {
-    type: "fill",
-    question: "Complete: ______ مُسْلِمُونَ (They are Muslims)",
-    options: ["هُوَ", "هُمْ", "أنتَ", "نَحْنُ"],
-    answer: "هُمْ"
-  },
-  {
-    type: "fill",
-    question: "Which pronoun fits: ______ مُسْلِمَةٌ (She is a Muslim) - Note: Use masculine pronoun as placeholder",
-    options: ["هُوَ", "هِيَ", "أنا", "نَحْنُ"],
-    answer: "هِيَ"
-  },
+  // MEDIUM-HARD - Fill in blanks
+  { type: "fill", question: "وَ + هُمْ = ?", options: ["وَهُمْ", "فَهُمْ", "وَهُوَ", "فَنَحْنُ"], answer: "وَهُمْ" },
+  { type: "fill", question: "فَ + هُوَ = ?", options: ["وَهُوَ", "فَهُوَ", "فَهُمْ", "فَنَحْنُ"], answer: "فَهُوَ" },
+  { type: "fill", question: "Complete: مُسْلِمٌ ______ (He is a Muslim)", options: ["هُوَ", "هُمْ", "أنا", "نَحْنُ"], answer: "هُوَ" },
+  { type: "fill", question: "Complete: مُسْلِمُونَ ______ (They are Muslims)", options: ["هُوَ", "هُمْ", "أنتَ", "نَحْنُ"], answer: "هُمْ" },
+  { type: "fill", question: "Complete: مُسْلِمَةٌ ______ (She is a Muslim)", options: ["هُوَ", "هِيَ", "أنا", "نَحْنُ"], answer: "هِيَ" },
 
-  // HARD - Sentence translation/application (3+ questions)
-  {
-    type: "mcq",
-    question: "How do you say 'We are Muslims' in Arabic?",
-    options: ["هُوَ مُسْلِمٌ", "نَحْنُ مُسْلِمُونَ", "هُمْ مُسْلِمُونَ", "أنا مُسْلِمٌ"],
-    answer: "نَحْنُ مُسْلِمُونَ"
-  },
-  {
-    type: "mcq",
-    question: "How many times do these 6 pronouns appear in the Qur'an?",
-    options: ["500", "1295", "2000", "850"],
-    answer: "1295"
-  },
-  {
-    type: "fill",
-    question: "Translate to Arabic: 'I am a believer'",
-    options: ["أنا مُؤْمِنٌ", "هُوَ مُؤْمِنٌ", "نَحْنُ مُؤْمِنُونَ", "هُمْ مُؤْمِنُونَ"],
-    answer: "أنا مُؤْمِنٌ"
-  }
+  // HARD
+  { type: "mcq", question: "How do you say 'We are Muslims' in Arabic?", options: ["هُوَ مُسْلِمٌ", "نَحْنُ مُسْلِمُونَ", "هُمْ مُسْلِمُونَ", "أنا مُسْلِمٌ"], answer: "نَحْنُ مُسْلِمُونَ" },
+  { type: "fill", question: "Translate to Arabic: 'I am a believer'", options: ["أنا مُؤْمِنٌ", "هُوَ مُؤْمِنٌ", "نَحْنُ مُؤْمِنُونَ", "هُمْ مُؤْمِنُونَ"], answer: "أنا مُؤْمِنٌ" }
 ]
-  },
+},
   {
     id: 2,
     title: "Nouns & Plurals",
@@ -178,7 +104,7 @@ exercises: [
       { arabic: "هُمْ مُسْلِمُونَ", english: "They are Muslims." },
       { arabic: "هُوَ اَلْمُسْلِمُ", english: "He is the Muslim." },
     ],
-    exercises: [
+exercises: [
   // EASY - Basic meanings (5 questions)
   {
     type: "mcq",
@@ -216,31 +142,31 @@ exercises: [
     type: "mcq",
     question: "What is the plural of مُسْلِم?",
     options: ["مُسْلِمَة", "مُسْلِمُونَ", "مُسْلِمَات", "مُسْلِمِين"],
-    answer: "مُسْلِمُونَ"
+    answer: ["مُسْلِمُونَ", "مُسْلِمِين"]
   },
   {
     type: "mcq",
     question: "Plural of مُؤْمِن is?",
     options: ["مُؤْمِنُونَ", "مُؤْمِنَة", "مُؤْمِنَات", "مُؤْمِنِين"],
-    answer: "مُؤْمِنُونَ"
+    answer: ["مُؤْمِنُونَ", "مُؤْمِنِين"]
   },
   {
     type: "mcq",
     question: "What is the plural of صَالِح?",
     options: ["صَالِحُونَ", "صَالِحَة", "صَالِحَات", "صَالِحِين"],
-    answer: "صَالِحُونَ"
+    answer: ["صَالِحُونَ", "صَالِحِين"]
   },
   {
     type: "mcq",
     question: "Plural of كَافِر is?",
     options: ["كَافِرُونَ", "كَافِرَة", "كَافِرَات", "كَافِرِين"],
-    answer: "كَافِرُونَ"
+    answer: ["كَافِرُونَ", "كَافِرِين"]
   },
   {
     type: "mcq",
     question: "What is the plural of مُشْرِك?",
     options: ["مُشْرِكُونَ", "مُشْرِكَة", "مُشْرِكَات", "مُشْرِكِين"],
-    answer: "مُشْرِكُونَ"
+    answer: ["مُشْرِكُونَ", "مُشْرِكِين"]
   },
 
   // MEDIUM - Definite nouns (الـ) (4 questions)
@@ -254,17 +180,17 @@ exercises: [
     type: "mcq",
     question: "How do you make a noun definite in Arabic?",
     options: ["Add ون at the end", "Add ين at the end", "Add الـ at the beginning", "Add ة at the end"],
-    answer: "Add الـ at the beginning"
+    answer: ["Add الـ at the beginning", "Add ون at the end", "Add ين at the end"]
   },
   {
     type: "fill",
-    question: "مُؤْمِن + الـ = ?",
+    question: "الـ + مُؤْمِن  = ?",
     options: ["مُؤْمِنُونَ", "اَلْمُؤْمِنُ", "مُؤْمِنَة", "مُؤْمِنَات"],
     answer: "اَلْمُؤْمِنُ"
   },
   {
     type: "fill",
-    question: "Complete: ______ اَلْمُسْلِمُ (He is the Muslim)",
+    question: "Complete: اَلْمُسْلِمُ ______ (He is the Muslim)",
     options: ["هُوَ", "هُمْ", "أنا", "نَحْنُ"],
     answer: "هُوَ"
   },
@@ -305,13 +231,13 @@ exercises: [
   // MEDIUM-HARD - Fill in blanks (4 questions)
   {
     type: "fill",
-    question: "Complete the sentence: هُمْ ______ (They are Muslims)",
+    question: "Complete the sentence:  ______ هُمْ (They are Muslims)",
     options: ["مُسْلِمٌ", "مُسْلِمُونَ", "مُسْلِمَة", "اَلْمُسْلِمُ"],
     answer: "مُسْلِمُونَ"
   },
   {
     type: "fill",
-    question: "Complete: هُوَ ______ (He is the believer)",
+    question: "Complete:  ______ هُوَ (He is the believer)",
     options: ["مُؤْمِنٌ", "مُؤْمِنُونَ", "اَلْمُؤْمِنُ", "مُؤْمِنَة"],
     answer: "اَلْمُؤْمِنُ"
   },
@@ -320,12 +246,6 @@ exercises: [
     question: "The plural مُسْلِمُونَ is used for which pronoun?",
     options: ["هُوَ", "هِيَ", "هُمْ", "أنا"],
     answer: "هُمْ"
-  },
-  {
-    type: "fill",
-    question: "What happens when you add الـ to a word starting with a letter?",
-    options: ["Nothing changes", "Add temporary Hamzah (ا)", "Remove first letter", "Add ون at end"],
-    answer: "Add temporary Hamzah (ا)"
   },
 
   // HARD - Application & translation (3+ questions)
@@ -349,15 +269,9 @@ exercises: [
   },
   {
     type: "mcq",
-    question: "How many times does 'مُؤْمِن' appear in the Qur'an?",
-    options: ["42", "136", "230", "49"],
-    answer: "230"
-  },
-  {
-    type: "mcq",
     question: "What is the feminine form of مُسْلِم?",
     options: ["مُسْلِمُونَ", "مُسْلِمَة", "مُسْلِمَات", "مُسْلِمِين"],
-    answer: "مُسْلِمَة"
+    answer: ["مُسْلِمَة", "مُسْلِمَات"]
   }
 ]
   },
@@ -534,19 +448,19 @@ exercises: [
   // MEDIUM-HARD - Complete sentences (4 questions)
   {
     type: "fill",
-    question: "Complete: ______ رَبُّهُ اللَّهُ (His Lord is Allah)",
+    question: "Complete: رَبُّهُ اللَّهُ _____(His Lord is Allah)",
     options: ["هُوَ", "هُمْ", "أنا", "نَحْنُ"],
     answer: "هُوَ"
   },
   {
     type: "fill",
-    question: "Complete: ______ رَبُّنَا اللَّهُ (Our Lord is Allah)",
+    question: "Complete: رَبُّنَا اللَّهُ _____ (Our Lord is Allah)",
     options: ["هُوَ", "هُمْ", "أنا", "نَحْنُ"],
     answer: "نَحْنُ"
   },
   {
     type: "fill",
-    question: "Question: مَنْ رَبُّ______؟ (Who is your Lord?)",
+    question: "Question: مَنْ رَبُّ ______؟ (Who is your Lord?)",
     options: ["هُ", "هُمْ", "كَ", "نَا"],
     answer: "كَ"
   },
@@ -558,12 +472,6 @@ exercises: [
   },
 
   // HARD - Application questions (4 questions)
-  {
-    type: "mcq",
-    question: "How many times do these possessive suffixes appear in the Qur'an?",
-    options: ["About 1000 times", "About 4000 times", "About 8000 times", "About 10000 times"],
-    answer: "About 8000 times"
-  },
   {
     type: "mcq",
     question: "Which suffix is attached to mean 'Your (all)'?",
@@ -626,7 +534,7 @@ exercises: [
       { arabic: "هِيَ مُؤْمِنَة", english: "She is a believer." },
       { arabic: "رَبُّهَا اللَّهُ", english: "Her Lord is Allah." },
     ],
-exercises: [
+    exercises: [
   // EASY - Feminine forms (5 questions)
   {
     type: "mcq",
@@ -638,13 +546,13 @@ exercises: [
     type: "mcq",
     question: "Feminine of مُسْلِم is?",
     options: ["مُسْلِمُونَ", "مُسْلِمَة", "مُسْلِمِينَ", "مُسْلِمَات"],
-    answer: "مُسْلِمَة"
+    answer: ["مُسْلِمَة", "مُسْلِمَات"]
   },
   {
     type: "mcq",
     question: "Feminine of مُؤْمِن is?",
     options: ["مُؤْمِنُونَ", "مُؤْمِنَة", "مُؤْمِنَات", "مُؤْمِنِين"],
-    answer: "مُؤْمِنَة"
+    answer: ["مُؤْمِنَة", "مُؤْمِنَات"]
   },
   {
     type: "mcq",
@@ -700,13 +608,13 @@ exercises: [
   },
   {
     type: "fill",
-    question: "Complete (RIGHT side): ______ مُسْلِمَة (She is a Muslim)",
+    question: "Complete : مُسْلِمَة ______ (She is a Muslim)",
     options: ["هُوَ", "هِيَ", "هُمْ", "أنا"],
     answer: "هِيَ"
   },
   {
     type: "fill",
-    question: "Complete (RIGHT side): ______ مُؤْمِنَة (She is a believer)",
+    question: "Complete : مُؤْمِنَة ______ (She is a believer)",
     options: ["هُوَ", "هِيَ", "هُمْ", "نَحْنُ"],
     answer: "هِيَ"
   },
@@ -734,19 +642,19 @@ exercises: [
   // MIXED with Lesson 3 (Possessive suffixes) - CORRECTED RTL FILL FORMAT
   {
     type: "fill",
-    question: "Complete (RIGHT side - add suffix): ______ كِتَابُ (Her book)",
+    question: "Complete : ______ كِتَابُ (Her book)",
     options: ["هَا", "هُ", "نَا", "كَ"],
     answer: "هَا"
   },
   {
     type: "fill",
-    question: "Complete (RIGHT side - add suffix): ______ رَبُّ (Her Lord)",
+    question: "Complete : ______ رَبُّ (Her Lord)",
     options: ["هَا", "هُ", "نَا", "هُمْ"],
     answer: "هَا"
   },
   {
     type: "fill",
-    question: "Complete (RIGHT side - add suffix): ______ دِينُ (Her religion)",
+    question: "Complete : ______ دِينُ (Her religion)",
     options: ["هَا", "هُ", "كَ", "نَا"],
     answer: "هَا"
   },
@@ -794,7 +702,7 @@ exercises: [
   },
   {
     type: "fill",
-    question: "Complete (RIGHT side): ______ مُسْلِمَات (They are Muslim women - feminine plural uses هُنَّ)",
+    question: "Complete : مُسْلِمَات ______ (They are Muslim women - هُمْ feminine is هُنَّ)",
     options: ["هُوَ", "هُمْ", "هِيَ", "هُنَّ"],
     answer: "هُنَّ"
   },
@@ -813,7 +721,7 @@ exercises: [
   },
   {
     type: "fill",
-    question: "Complete (RIGHT side): ______ صَالِحَةٌ (She is a pious person)",
+    question: "Complete : صَالِحَةٌ ______ (She is a pious person)",
     options: ["هُوَ", "هِيَ", "هُمْ", "نَحْنُ"],
     answer: "هِيَ"
   },
@@ -824,14 +732,8 @@ exercises: [
     answer: "Her book"
   },
   {
-    type: "mcq",
-    question: "How many times does هِيَ occur in the Qur'an?",
-    options: ["32", "48", "64", "86"],
-    answer: "64"
-  },
-  {
     type: "fill",
-    question: "Complete (RIGHT side - add suffix): رَضِيَ اللَّهُ عَنْ______ (May Allah be pleased with her - feminine)",
+    question: "Complete : _____ رَضِيَ اللَّهُ عَنْ (May Allah be pleased with her - feminine)",
     options: ["هُ", "هَا", "هُمْ", "كَ"],
     answer: "هَا"
   }
@@ -1019,8 +921,7 @@ exercises: [
     ],
     answer: "لَكُمْ دِينُكُمْ"
   }
-]
-  },
+]  },
   {
     id: 6,
     title: "Prepositions: بِ، فِي، عَلَى",
@@ -1584,28 +1485,7 @@ exercises: [
     question: "Which is correct for 'Those are believers'?",
     options: ["هَٰؤُلَاء مُؤْمِنُونَ", "أُولَٰئِكَ مُؤْمِنُونَ", "هَٰذَا مُؤْمِنٌ", "ذَٰلِكَ مُؤْمِنٌ"],
     answer: "أُولَٰئِكَ مُؤْمِنُونَ"
-  },
-  {
-    type: "mcq",
-    question: "How many times does هَٰذَا appear in the Qur'an?",
-    options: ["46", "225", "478", "204"],
-    answer: "225"
-  },
-
-  // QURAN COUNT QUESTIONS (2 questions)
-  {
-    type: "mcq",
-    question: "How many times does ذَٰلِكَ appear in the Qur'an?",
-    options: ["225", "478", "204", "46"],
-    answer: "478"
-  },
-  {
-    type: "mcq",
-    question: "How many times does أُولَٰئِكَ appear in the Qur'an?",
-    options: ["225", "478", "204", "46"],
-    answer: "204"
-  }
-]
+  }]
   },
   {
     id: 9,

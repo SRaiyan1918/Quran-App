@@ -2,33 +2,119 @@ import { useState, useCallback } from 'react';
 import { markExercisesComplete } from '../data/progress';
 
 // ── MCQ Component ──
+// ── MCQ Component with Multiple Selection Support ──
 function MCQExercise({ exercise, onAnswer }) {
-  const [selected, setSelected] = useState(null);
-  const [answered, setAnswered] = useState(false);
-
-  const handleSelect = (opt) => {
-    if (answered) return;
-    setSelected(opt);
-    setAnswered(true);
-    const correct = opt === exercise.answer;
-    setTimeout(() => onAnswer(correct), 1000);
+  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [submitted, setSubmitted] = useState(false);
+  const [isCorrect, setIsCorrect] = useState(false);
+  
+  // Check if answer is array or string
+  const correctAnswers = Array.isArray(exercise.answer) ? exercise.answer : [exercise.answer];
+  
+  const handleToggleOption = (opt) => {
+    if (submitted) return;
+    
+    setSelectedOptions(prev => {
+      if (prev.includes(opt)) {
+        // Remove if already selected
+        return prev.filter(item => item !== opt);
+      } else {
+        // Add if not selected
+        return [...prev, opt];
+      }
+    });
   };
-
+  
+  const handleSubmit = () => {
+    if (submitted || selectedOptions.length === 0) return;
+    
+    // Check if all selected options are correct
+    const allSelectedAreCorrect = selectedOptions.every(opt => correctAnswers.includes(opt));
+    // Check if all correct answers are selected
+    const allCorrectAreSelected = correctAnswers.every(ans => selectedOptions.includes(ans));
+    
+    const correct = allSelectedAreCorrect && allCorrectAreSelected;
+    setIsCorrect(correct);
+    setSubmitted(true);
+    
+    setTimeout(() => {
+      onAnswer(correct);
+    }, 1500);
+  };
+  
+  const getOptionClass = (opt) => {
+    if (!submitted) {
+      if (selectedOptions.includes(opt)) return 'mcq-option selected';
+      return 'mcq-option';
+    }
+    
+    // After submission
+    if (correctAnswers.includes(opt)) {
+      return 'mcq-option correct';
+    }
+    if (selectedOptions.includes(opt) && !correctAnswers.includes(opt)) {
+      return 'mcq-option wrong';
+    }
+    return 'mcq-option';
+  };
+  
   return (
     <div className="mcq-options fade-up">
-      {exercise.options.map((opt, i) => {
-        let cls = 'mcq-option';
-        if (answered) {
-          if (opt === exercise.answer) cls += ' correct';
-          else if (opt === selected) cls += ' wrong';
-        }
-        return (
-          <button key={i} className={cls} onClick={() => handleSelect(opt)} disabled={answered}>
-            <span className="option-dot" />
-            <span>{opt}</span>
-          </button>
-        );
-      })}
+      <div style={{marginBottom: 12, fontSize: '0.8rem', color: 'var(--text-muted)'}}>
+        {correctAnswers.length > 1 ? (
+          <span>✅ Multiple answers possible. Select all that apply.</span>
+        ) : (
+          <span>🔘 Select one answer</span>
+        )}
+      </div>
+      
+      {exercise.options.map((opt, i) => (
+        <button 
+          key={i} 
+          className={getOptionClass(opt)} 
+          onClick={() => handleToggleOption(opt)} 
+          disabled={submitted}
+        >
+          <span className="option-dot">
+            {selectedOptions.includes(opt) && !submitted && '✓'}
+          </span>
+          <span>{opt}</span>
+        </button>
+      ))}
+      
+      <button 
+        className="submit-btn"
+        onClick={handleSubmit}
+        disabled={submitted || selectedOptions.length === 0}
+        style={{
+          width: 'calc(100% - 32px)',
+          margin: '20px 16px 0',
+          padding: '14px',
+          background: 'linear-gradient(135deg, var(--green-main), var(--green-dark))',
+          color: 'white',
+          border: 'none',
+          borderRadius: 'var(--radius-md)',
+          fontFamily: 'Nunito, sans-serif',
+          fontSize: '1rem',
+          fontWeight: 800,
+          cursor: 'pointer',
+          transition: 'all 0.2s',
+          opacity: (submitted || selectedOptions.length === 0) ? 0.6 : 1
+        }}
+      >
+        {submitted ? 'Answered ✓' : `Submit Answer (${selectedOptions.length} selected)`}
+      </button>
+      
+      {submitted && (
+        <div className={`feedback-bar ${isCorrect ? 'correct' : 'wrong'} pop-in`}>
+          <span>{isCorrect ? '✅' : '❌'}</span>
+          <span>
+            {isCorrect 
+              ? 'Correct! Well done!' 
+              : `Correct answer(s): ${correctAnswers.join(' or ')}`}
+          </span>
+        </div>
+      )}
     </div>
   );
 }

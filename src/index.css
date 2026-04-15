@@ -1183,3 +1183,17 @@ body {
 .pop-in {
   animation: pop 0.25s ease forwards;
 }
+.mcq-option.selected {
+  border-color: var(--green-main);
+  background: var(--green-pale);
+  color: var(--green-dark);
+}
+
+.mcq-option.selected .option-dot {
+  background: var(--green-main);
+  border-color: var(--green-main);
+}
+
+.submit-btn:active {
+  transform: scale(0.97);
+}
