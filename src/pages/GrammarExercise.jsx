@@ -7,72 +7,68 @@ function MCQExercise({ exercise, onAnswer }) {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [submitted, setSubmitted] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
-  
-  // Check if answer is array or string
-  const correctAnswers = Array.isArray(exercise.answer) ? exercise.answer : [exercise.answer];
-  
-  const handleToggleOption = (opt) => {
+
+  const correctAnswers = Array.isArray(exercise.answer)
+    ? exercise.answer
+    : [exercise.answer];
+
+  const isMultiple = correctAnswers.length > 1;
+
+  const handleSelectOption = (opt) => {
     if (submitted) return;
-    
-    setSelectedOptions(prev => {
-      if (prev.includes(opt)) {
-        // Remove if already selected
-        return prev.filter(item => item !== opt);
-      } else {
-        // Add if not selected
-        return [...prev, opt];
-      }
-    });
+
+    if (isMultiple) {
+      // Toggle selection for multi-select
+      setSelectedOptions((prev) =>
+        prev.includes(opt) ? prev.filter((item) => item !== opt) : [...prev, opt]
+      );
+    } else {
+      // Single select: replace selection
+      setSelectedOptions([opt]);
+    }
   };
-  
+
   const handleSubmit = () => {
     if (submitted || selectedOptions.length === 0) return;
-    
-    // Check if all selected options are correct
-    const allSelectedAreCorrect = selectedOptions.every(opt => correctAnswers.includes(opt));
-    // Check if all correct answers are selected
-    const allCorrectAreSelected = correctAnswers.every(ans => selectedOptions.includes(ans));
-    
-    const correct = allSelectedAreCorrect && allCorrectAreSelected;
+
+    let correct = false;
+    if (isMultiple) {
+      const allSelectedCorrect = selectedOptions.every((opt) => correctAnswers.includes(opt));
+      const allCorrectSelected = correctAnswers.every((ans) => selectedOptions.includes(ans));
+      correct = allSelectedCorrect && allCorrectSelected;
+    } else {
+      correct = selectedOptions[0] === correctAnswers[0];
+    }
+
     setIsCorrect(correct);
     setSubmitted(true);
-    
-    setTimeout(() => {
-      onAnswer(correct);
-    }, 1500);
+    onAnswer(correct); // No setTimeout – let parent handle next button delay
   };
-  
+
   const getOptionClass = (opt) => {
     if (!submitted) {
-      if (selectedOptions.includes(opt)) return 'mcq-option selected';
-      return 'mcq-option';
+      return `mcq-option ${selectedOptions.includes(opt) ? 'selected' : ''}`;
     }
-    
-    // After submission
-    if (correctAnswers.includes(opt)) {
-      return 'mcq-option correct';
-    }
-    if (selectedOptions.includes(opt) && !correctAnswers.includes(opt)) {
-      return 'mcq-option wrong';
-    }
+    if (correctAnswers.includes(opt)) return 'mcq-option correct';
+    if (selectedOptions.includes(opt)) return 'mcq-option wrong';
     return 'mcq-option';
   };
-  
+
   return (
     <div className="mcq-options fade-up">
-      <div style={{marginBottom: 12, fontSize: '0.8rem', color: 'var(--text-muted)'}}>
-        {correctAnswers.length > 1 ? (
+      <div style={{ marginBottom: 12, fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+        {isMultiple ? (
           <span>✅ Multiple answers possible. Select all that apply.</span>
         ) : (
           <span>🔘 Select one answer</span>
         )}
       </div>
-      
+
       {exercise.options.map((opt, i) => (
-        <button 
-          key={i} 
-          className={getOptionClass(opt)} 
-          onClick={() => handleToggleOption(opt)} 
+        <button
+          key={i}
+          className={getOptionClass(opt)}
+          onClick={() => handleSelectOption(opt)}
           disabled={submitted}
         >
           <span className="option-dot">
@@ -81,8 +77,8 @@ function MCQExercise({ exercise, onAnswer }) {
           <span>{opt}</span>
         </button>
       ))}
-      
-      <button 
+
+      <button
         className="submit-btn"
         onClick={handleSubmit}
         disabled={submitted || selectedOptions.length === 0}
@@ -99,26 +95,27 @@ function MCQExercise({ exercise, onAnswer }) {
           fontWeight: 800,
           cursor: 'pointer',
           transition: 'all 0.2s',
-          opacity: (submitted || selectedOptions.length === 0) ? 0.6 : 1
+          opacity: submitted || selectedOptions.length === 0 ? 0.6 : 1,
         }}
       >
-        {submitted ? 'Answered ✓' : `Submit Answer (${selectedOptions.length} selected)`}
+        {submitted
+          ? 'Answered ✓'
+          : `Submit Answer${isMultiple ? ` (${selectedOptions.length} selected)` : ''}`}
       </button>
-      
+
       {submitted && (
         <div className={`feedback-bar ${isCorrect ? 'correct' : 'wrong'} pop-in`}>
           <span>{isCorrect ? '✅' : '❌'}</span>
           <span>
-            {isCorrect 
-              ? 'Correct! Well done!' 
-              : `Correct answer(s): ${correctAnswers.join(' or ')}`}
+            {isCorrect
+              ? 'Correct! Well done!'
+              : `Correct answer${isMultiple ? 's' : ''}: ${correctAnswers.join(' or ')}`}
           </span>
         </div>
       )}
     </div>
   );
 }
-
 // ── Match Component ──
 // ── Match Component (FIXED) ──
 function MatchExercise({ exercise, onAnswer }) {
@@ -163,7 +160,7 @@ function MatchExercise({ exercise, onAnswer }) {
       setSelectedEnglish(null);
       
       if (newMatched.length === pairs.length) {
-        setTimeout(() => onAnswer(true), 600);
+        onAnswer(true);
       }
     } else {
       setWrongPair({ arabic: a, english: e });
@@ -171,7 +168,7 @@ function MatchExercise({ exercise, onAnswer }) {
         setWrongPair(null);
         setSelectedArabic(null);
         setSelectedEnglish(null);
-      }, 700);
+      }, 300);
     }
   };
 
@@ -256,7 +253,7 @@ function FillExercise({ exercise, onAnswer }) {
     setSelected(opt);
     setAnswered(true);
     const correct = opt === exercise.answer;
-    setTimeout(() => onAnswer(correct), 1000);
+    setTimeout(() => onAnswer(correct), 600);
   };
 
   return (
@@ -406,30 +403,37 @@ export default function GrammarExercise({ lesson, navigate }) {
             <FillExercise exercise={current} onAnswer={handleAnswer} />
           )}
         </div>
+{/* Feedback and Next button - only for non-MCQ or handled differently */}
+{answered && current.type !== 'match' && current.type !== 'mcq' && (
+  <>
+    <div className={`feedback-bar ${lastCorrect ? 'correct' : 'wrong'} pop-in`}>
+      <span>{lastCorrect ? '✅' : '❌'}</span>
+      <span>{lastCorrect ? 'Correct!' : `Correct answer: ${current.answer}`}</span>
+    </div>
+    <button className="next-btn" onClick={handleNext}>
+      {currentIdx + 1 >= exercises.length ? '🏁 See Results' : '➡️ Next Question'}
+    </button>
+  </>
+)}
 
-        {answered && current.type !== 'match' && (
-          <>
-            <div className={`feedback-bar ${lastCorrect ? 'correct' : 'wrong'} pop-in`}>
-              <span>{lastCorrect ? '✅' : '❌'}</span>
-              <span>{lastCorrect ? 'Correct!' : `Correct answer: ${current.answer}`}</span>
-            </div>
-            <button className="next-btn" onClick={handleNext}>
-              {currentIdx + 1 >= exercises.length ? '🏁 See Results' : '➡️ Next Question'}
-            </button>
-          </>
-        )}
+{/* For MCQ: show next button only after answer submitted */}
+{answered && current.type === 'mcq' && (
+  <button className="next-btn" onClick={handleNext}>
+    {currentIdx + 1 >= exercises.length ? '🏁 See Results' : '➡️ Next Question'}
+  </button>
+)}
 
-        {answered && current.type === 'match' && (
-          <>
-            <div className="feedback-bar correct pop-in">
-              <span>✅</span>
-              <span>All pairs matched!</span>
-            </div>
-            <button className="next-btn" onClick={handleNext}>
-              {currentIdx + 1 >= exercises.length ? '🏁 See Results' : '➡️ Next Question'}
-            </button>
-          </>
-        )}
+{answered && current.type === 'match' && (
+  <>
+    <div className="feedback-bar correct pop-in">
+      <span>✅</span>
+      <span>All pairs matched!</span>
+    </div>
+    <button className="next-btn" onClick={handleNext}>
+      {currentIdx + 1 >= exercises.length ? '🏁 See Results' : '➡️ Next Question'}
+    </button>
+  </>
+)}
       </div>
     </div>
   );
