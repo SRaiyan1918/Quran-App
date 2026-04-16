@@ -180,7 +180,7 @@ exercises: [
     type: "mcq",
     question: "How do you make a noun definite in Arabic?",
     options: ["Add ون at the end", "Add ين at the end", "Add الـ at the beginning", "Add ة at the end"],
-    answer: ["Add الـ at the beginning", "Add ون at the end", "Add ين at the end"]
+    answer: ["Add الـ at the beginning"]
   },
   {
     type: "fill",
